@@ -7,7 +7,7 @@ ExprsNM <- read.table("c:\\users\\amanuel1\\Dev\\ZhaoLab\\MS\\GeneExpressionProf
 # determining duplicates
 # help from: https://stackoverflow.com/questions/16905425/find-duplicate-values-in-r
 geneProbeCounts <- ExprsNM[duplicated(ExprsNM$tT...7.) | duplicated(ExprsNM$tT...7., fromLast = TRUE),]
-numdups <- table(dups$tT...7.)
+numdups <- table(geneProbeCounts$tT...7.)
 actualdups <- numdups[numdups > 0]
 dupgenes <- rownames(actualdups)
 
@@ -33,4 +33,4 @@ for(gene in dupgenes){
   
 }
 
-write.table(nodupGeneRecords, "GSE108000_NoDupGeneRecords.txt")
+# write.table(nodupGeneRecords, "GSE108000_NoDupGeneRecords.txt")
