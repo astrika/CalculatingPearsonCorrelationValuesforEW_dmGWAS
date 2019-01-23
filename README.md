@@ -6,7 +6,7 @@ Preparing for MS GWAS and GEO data analysis by EW_dmGWAS:
 
   i.	Loaded raw data from GEO108000 MS brain tissue data set, normalized the values, and matched gene symbols to Agilent DNA microarray probe IDs (from specified platform: GPL13497)
   
-  ii. Handled any duplicate gene probes by obtaining an average of the PCC values of duplicates
+  ii. Handled any duplicate gene probes by calculating average of the gene expression measures of duplicates
 
   iii.	Obtained the co-expression gene matrices for case/control phenotypes
 
