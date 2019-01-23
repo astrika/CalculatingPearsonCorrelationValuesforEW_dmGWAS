@@ -30,6 +30,20 @@ for(i in seq(1:nrow(network))){
                                          error = function(e) print(NA))
 }
 
+# Removing NA values (PPI interactions not found in co-expression matrix):
 Control_PPI_pccValues_omitNA <- na.omit(Control_PPI_pccValues)
 colnames(Control_PPI_pccValues_omitNA) <- c("Gene1","Gene2","PCC")
 write.table(Control_PPI_pccValues_omitNA, "Control_PPI_pccValues_omitNA.txt", quote = F, row.names = F, col.names = F)
+
+# Identifying any gene interactions where gene is interacting with itself, (these interations have PCC = 1):
+sameGeneInteraction <- c()
+for(i in seq(1:nrow(Control_PPI_pccValues_omitNA))){
+  if(Control_PPI_pccValues_omitNA[i,1] == Control_PPI_pccValues_omitNA[i,2]){
+    sameGeneInteraction <- c(sameGeneInteraction, i)
+  }
+}
+
+#After same gene interactions have been identified, we may remove them:
+Control_PPI_pccValues_omitNA <- Control_PPI_pccValues_omitNA[-sameGeneInteraction, ]
+
+write.table(Control_PPI_pccValues_omitNA, "Control_PPI_pccValues_omitNA_rmSameGenes.txt", quote = F, row.names = F, col.names = F)
